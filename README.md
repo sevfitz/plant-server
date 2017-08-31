@@ -1,1 +1,1 @@
-# plant-server
+# Server for Full Stack Plant Project

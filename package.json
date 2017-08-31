@@ -1,0 +1,38 @@
+{
+  "name": "plant-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sevfitz/plant-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sevfitz/plant-server/issues"
+  },
+  "homepage": "https://github.com/sevfitz/plant-server#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.9",
+    "morgan": "^1.8.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "eslint": "^4.5.0",
+    "eslint-plugin-import": "^2.7.0",
+    "mocha": "^3.5.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "//pretest": "npm run lint",
+    "test": "mocha --recursive",
+    "test:watch": "npm run test -- -w",
+    "test:unit": "mocha test/unit",
+    "test:e2e": "mocha test/e2e",
+    "start": "nodemon server.js"
+  }
+}
