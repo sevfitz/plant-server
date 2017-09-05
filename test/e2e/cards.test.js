@@ -2,7 +2,7 @@ const db = require('./_db');
 const request = require('./_request');
 const assert = require('chai').assert;
 
-describe('images api', () => {
+describe('Cards api', () => {
 
     before(db.drop);
 
@@ -17,7 +17,23 @@ describe('images api', () => {
     function saveCard (card) {
         return request
             .post('/api/cards')
+            .send(card)
+            .then(res => {
+                let body = res.body;
+                card.__v = body.__v;
+                card._id = body._id;
+                return body;
+            });
     }
+
+    it('Initial /GET returns empty list', () => {
+        return request.get('/api/cards')
+            .then(req => {
+                const cards = req.body;
+                assert.deepEqual(cards, []);
+            });
+    });
+
 
 
 
