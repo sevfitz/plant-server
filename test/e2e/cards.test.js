@@ -34,7 +34,12 @@ describe('Cards api', () => {
             });
     });
 
-
+    it('saves a card', () => {
+        return saveCard(testCard)
+            .then(saved => {
+                assert.deepEqual(saved, testCard);
+            });
+    });
 
 
 
