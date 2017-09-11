@@ -15,4 +15,18 @@ describe('User model', () => {
         });
         return user.validate();
     });
+
+    describe('validation failures', () => {
+
+        it('fails if required fields are missing', () => {
+            const user = new User();
+            return user.validate()
+                .then(expectedValidation,
+                    err => {
+                        const errors = err.errors;
+                        assert.ok(errors.name && errors.email && errors.hash);
+                        assert.equal(errors.name.kind && errors.email.kind && errors.hash.kind, 'required');
+                    });
+        });
+    });
 });
