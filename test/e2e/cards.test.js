@@ -56,6 +56,13 @@ describe('Cards api', () => {
             });
     });
 
+    it('gets a card by id', () => {
+        const url = `/api/cards/${testCard._id}`;
+        return request.get(url)
+            .then(res => res.body)
+            .then(card => assert.deepEqual(card, testCard));
+    });
+
     it('Gets all cards', () => {
         return Promise.all([
             saveCard(testCard1),
@@ -68,6 +75,24 @@ describe('Cards api', () => {
             .then(() => request.get('/api/cards'))
             .then(res => res.body)
             .then(cards => assert.deepEqual(cards, [testCard,testCard1,testCard2]));
-        
+    });
+
+    it('patches a card', () => {
+        const url = `/api/cards/${testCard2._id}`;
+        return request.patch(url)
+            .send({ genus: 'something else' })
+            .then(res => res.body)
+            .then(res => assert.deepEqual(res.genus, 'something else'));
+    });
+
+    it('deletes a card', () => {
+        const url = `/api/cards/${testCard2._id}`;
+        return request.delete(url)
+            .then(res => {
+                assert.deepEqual(res.body, { removed: true });
+                return res;
+            })
+            .then(() => request.delete(url))
+            .then(res => assert.deepEqual(res.body, { removed: false }));
     });
 });

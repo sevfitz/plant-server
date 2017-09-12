@@ -26,7 +26,7 @@ describe('Card model', () => {
                     err => {
                         const errors = err.errors;
                         assert.ok(errors.name && errors.genus && errors.species && errors.url && errors.description);
-                        assert.ok((errors.name.kind && errors.genus.kind && errors.species.kind && errors.url.kind && errors.description.kind) === 'required');
+                        assert.equal(errors.name.kind && errors.genus.kind && errors.species.kind && errors.url.kind && errors.description.kind, 'required');
                     });
         });
     });
